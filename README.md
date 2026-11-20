@@ -118,10 +118,6 @@ La solución demuestra integración funcional, pero **no debe presentarse como u
 
 La trazabilidad detallada de requisitos completos, parciales y pendientes está en [`analisis.md`](analisis.md). No se atribuye a Servientrega S. A. la aprobación ni el uso real de esta infraestructura.
 
-## Presentación del proyecto
-
-La guía académica solicita una exposición de **15 minutos**, con demostración funcional, decisiones de diseño y análisis de costo-beneficio. El equipo dispone de un guion de exposición separado, organizado en cuatro intervenciones y orientado a una audiencia directiva no técnica.
-
 ## Referencia académica
 
 *Proyecto Final: Administración de Infraestructura de TI*. Universidad del Quindío, guía de la asignatura proporcionada para la actividad.
