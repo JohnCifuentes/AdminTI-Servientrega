@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Portal académico de infraestructura de TI de Servientrega S.A.">
+  <title>Portal institucional | Servientrega</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+  <header class="encabezado">
+    <div class="contenedor marca"><span class="marca-simbolo">S</span><div><strong>Servientrega</strong><small>Portal institucional · Laboratorio</small></div></div>
+  </header>
+  <main class="contenedor principal">
+    <section class="introduccion">
+      <p class="etiqueta">Infraestructura de TI · Sede simulada</p>
+      <h1>Bienvenido al portal institucional</h1>
+      <p>Seleccione un perfil de demostración para consultar su mensaje desde la base de datos MySQL.</p>
+    </section>
+    <nav class="perfiles" aria-label="Seleccionar perfil de demostración">
+      <a class="boton {{ 'activo' if rol_actual == 'administrador' else '' }}" href="{{ url_for('inicio', rol='administrador') }}" {% if rol_actual == 'administrador' %}aria-current="page"{% endif %}>Administrador</a>
+      <a class="boton {{ 'activo' if rol_actual == 'operador' else '' }}" href="{{ url_for('inicio', rol='operador') }}" {% if rol_actual == 'operador' %}aria-current="page"{% endif %}>Operador</a>
+    </nav>
+    <section class="tarjeta" aria-live="polite">
+      <span class="indicador">Perfil seleccionado</span>
+      <h2>{{ rol.nombre }}</h2>
+      <p>{{ rol.mensaje }}</p>
+      <div class="estado"><span class="punto"></span>Información obtenida desde MySQL</div>
+    </section>
+  </main>
+  <footer class="pie"><div class="contenedor">Proyecto académico de Administración de Infraestructura de TI · Simulación, no es un sistema oficial de Servientrega S.A. Los perfiles no constituyen autenticación.</div></footer>
+</body>
+</html>

@@ -1,0 +1,29 @@
+/* Portal institucional simulado: estilos responsivos de demostración. */
+:root { --verde:#168449; --verde-oscuro:#0d5e35; --fondo:#f4f8f5; --texto:#1d3327; --gris:#617267; --borde:#dce8df; --blanco:#fff; }
+* { box-sizing:border-box; }
+html { font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif; color:var(--texto); background:var(--fondo); }
+body { margin:0; min-height:100vh; display:flex; flex-direction:column; }
+a { color:inherit; }
+.contenedor { width:min(100% - 2.5rem, 960px); margin-inline:auto; }
+.encabezado { background:var(--blanco); border-bottom:1px solid var(--borde); padding:1.1rem 0; }
+.marca { display:flex; align-items:center; gap:.85rem; }
+.marca-simbolo { display:grid; place-items:center; width:2.7rem; height:2.7rem; border-radius:.7rem; color:white; background:var(--verde); font-size:1.45rem; font-weight:800; }
+.marca strong { display:block; font-size:1.2rem; color:var(--verde-oscuro); }
+.marca small { display:block; color:var(--gris); margin-top:.1rem; }
+.principal { flex:1; padding-block:4rem; }
+.introduccion { max-width:690px; }
+.etiqueta { color:var(--verde); text-transform:uppercase; letter-spacing:.1em; font-weight:750; font-size:.78rem; }
+h1 { font-size:clamp(2rem,5vw,3rem); line-height:1.12; margin:.8rem 0 1.1rem; }
+.introduccion > p:last-child { color:var(--gris); font-size:1.05rem; line-height:1.7; }
+.perfiles { display:flex; flex-wrap:wrap; gap:.75rem; margin:2rem 0 1.4rem; }
+.boton { display:inline-flex; justify-content:center; padding:.85rem 1.5rem; border-radius:.65rem; border:1px solid var(--borde); text-decoration:none; font-weight:700; background:var(--blanco); transition:background .15s,border-color .15s; }
+.boton:hover,.boton:focus-visible { border-color:var(--verde); outline-offset:3px; }
+.boton.activo { color:var(--blanco); background:var(--verde); border-color:var(--verde); }
+.tarjeta { background:var(--blanco); border:1px solid var(--borde); border-radius:1rem; padding:clamp(1.5rem,4vw,2.5rem); box-shadow:0 12px 40px #173c2510; }
+.indicador { display:inline-block; color:var(--verde); background:#eaf6ee; padding:.35rem .7rem; border-radius:999px; font-size:.78rem; font-weight:750; }
+h2 { font-size:1.65rem; margin:1rem 0 .6rem; }
+.tarjeta > p { font-size:1.08rem; line-height:1.75; max-width:690px; }
+.estado { display:flex; align-items:center; gap:.55rem; color:var(--gris); font-size:.87rem; margin-top:2rem; padding-top:1.2rem; border-top:1px solid var(--borde); }
+.punto { width:.55rem; height:.55rem; border-radius:50%; background:var(--verde); }
+.pie { background:#eaf2ec; color:#506358; padding:1.4rem 0; font-size:.8rem; line-height:1.6; }
+@media(max-width:520px) { .principal { padding-block:2.5rem; } .perfiles { flex-direction:column; } .boton { width:100%; } .contenedor { width:min(100% - 1.5rem,960px); } }

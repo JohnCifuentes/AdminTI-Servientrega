@@ -1,0 +1,52 @@
+flowchart TB
+    INTERNET((Internet / red física existente))
+    HOST["Portátil Windows<br/>Anfitrión y cliente SMB/HTTPS<br/>Host-only: 192.168.10.1"]
+    VBOX["Oracle VirtualBox"]
+    INTERNET -. "Red física / Bridged (si permitido)" .-> BRIDGE
+    HOST --- VBOX
+
+    subgraph REDES["Redes virtuales"]
+      BRIDGE["Bridged<br/>IP por DHCP de red física"]
+      LAN["Host-only: 192.168.10.0/24<br/>Sin gateway interno"]
+    end
+
+    VBOX --- LAN
+    VBOX --- BRIDGE
+    HOST <-->|"DNS / HTTPS / SMB / IPP"| LAN
+
+    subgraph SERVIDOR["VM 01 · Ubuntu Server 24.04 · 4 vCPU / 8 GB / 50 GB"]
+      S["srv-servientrega<br/>Host-only 192.168.10.10"]
+      D["Dokploy"]
+      T["Traefik · HTTPS"]
+      W["Nginx · portal HTML/CSS<br/>Mensaje según rol de prueba"]
+      DB[("MySQL<br/>Red interna Docker")]
+      DNS["dnsmasq · DNS interno"]
+      NTP["NTP"]
+      NFS["NFS"]
+      NIS["NIS"]
+      CUPS["CUPS · impresora PDF virtual"]
+      SMB["Samba"]
+      S --- D
+      D --> T
+      T --> W
+      W -->|"Comprobación mínima desde aplicación"| DB
+      S --- DNS
+      S --- NTP
+      S --- NFS
+      S --- NIS
+      S --- CUPS
+      S --- SMB
+    end
+
+    subgraph CLIENTE["VM 02 · Ubuntu Desktop 24.04 · 2 vCPU / 4 GB / 30 GB"]
+      L["cli-linux01<br/>Host-only 192.168.10.101<br/>NFS / NIS / NTP / HTTPS / CUPS"]
+    end
+
+    BRIDGE -. "Interfaz 1 de VM 01" .-> S
+    LAN <-->|"Interfaz 2 de VM 01"| S
+    LAN <-->|"Cliente Linux"| L
+    HOST -. "Samba / portal web" .-> SMB
+    L -. "NFS / NIS / NTP" .-> S
+
+    NOTE["Zona interna: servientrega.lab<br/>portal.servientrega.lab → 192.168.10.10<br/>dokploy.servientrega.lab → 192.168.10.10"]
+    DNS --- NOTE
